@@ -11,11 +11,13 @@ RUN apt-get -y install python3.10
 RUN apt-get -y install python3-pip
 RUN apt-get -y install python3.10-venv
 
-
-RUN python3.10 -m venv venv && \
-    . venv/bin/activate && \
-    pip install torch setuptools wheel xformers && \
-    pip install -U audiocraft runpod
+#RUN python3.10 -m venv venv && \
+#    . venv/bin/activate && pip install --upgrade pip
+RUN pip3.10 install 'torch==2.1.0' setuptools wheel
+RUN pip3.10 install xformers
+RUN pip3.10 install runpod
+RUN pip3.10 install -U audiocraft
+RUN pip3.10 install -U scipy
 
 RUN apt-get -y install git
 RUN git clone https://github.com/schen2315/musicgen-api
