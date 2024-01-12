@@ -2,8 +2,8 @@ import boto3
 from botocore.exceptions import ClientError
 import os
 
-ACCESS_KEY_ID = os.environ['aws_access_key_id']
-SECRET_ACCESS_KEY_ID = os.environ['aws_secret_access_key']
+ACCESS_KEY_ID = os.environ['ACCESS_KEY_ID']
+SECRET_ACCESS_KEY_ID = os.environ['SECRET_ACCESS_KEY_ID']
 
 def upload_file(filename, bucket, region, object_name):
     if object_name is None:
