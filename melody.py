@@ -19,6 +19,8 @@ USE_DIFFUSION_DECODER = True
 if USE_DIFFUSION_DECODER:
     mbd = MultiBandDiffusion.get_mbd_musicgen()
 
+print(f"Is CUDA available: {torch.cuda.is_available()}")
+
 def make_music(model=MODELS[0], 
                text='modern upbeat eletronic lofi beats',
                duration=10,
