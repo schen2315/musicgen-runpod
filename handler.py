@@ -13,7 +13,7 @@ def handler(job):
   
     # Add your custom code here.
     print(job_input["prompt"])
-    audio_files = make_music(job_input["prompt"])
+    audio_files = make_music(text=job_input["prompt"])
     # save to s3
     upload_files(audio_files, BUCKET, REGION)
     return job_input["prompt"] + " converted to output."
