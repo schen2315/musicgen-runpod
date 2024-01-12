@@ -19,7 +19,7 @@ def upload_file(filename, bucket, region, object_name):
         print(e)
 
 # upload files
-def upload_files(files=[], bucket, region):
+def upload_files(files, bucket, region):
     try:
         for file in files:
             upload_file(file, bucket, region, f"audio/{file}")
