@@ -6,8 +6,8 @@ import runpod
 
 import os
 
-BUCKET = os.environ('BUCKET')
-REGION = os.environ('REGION', 'us-east-1')
+BUCKET = os.environ['BUCKET']
+REGION = os.environ.get('REGION', 'us-east-1')
 
 def handler(job):
     job_input = job["input"] # Access the input from the request.

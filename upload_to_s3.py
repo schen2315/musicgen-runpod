@@ -4,7 +4,6 @@ import os
 
 ACCESS_KEY_ID = os.environ['aws_access_key_id']
 SECRET_ACCESS_KEY_ID = os.environ['aws_secret_access_key']
-REGION='us-east-1'
 
 def upload_file(filename, bucket, object_name):
     if object_name is None:
