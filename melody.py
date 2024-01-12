@@ -13,11 +13,11 @@ from contextlib import redirect_stdout, redirect_stderr
 import io
 
 MODELS = ['facebook/musicgen-small', 'facebook/musicgen-melody']
-def load_diffusion_decoder():
-    USE_DIFFUSION_DECODER = True
 
-    if USE_DIFFUSION_DECODER:
-        mbd = MultiBandDiffusion.get_mbd_musicgen()
+USE_DIFFUSION_DECODER = True
+
+if USE_DIFFUSION_DECODER:
+    mbd = MultiBandDiffusion.get_mbd_musicgen()
 
 def make_music(model=MODELS[0], 
                text='modern upbeat eletronic lofi beats',
@@ -52,7 +52,6 @@ def make_music(model=MODELS[0],
     return audio_files
 
 if __name__ == "__main__":
-    load_diffusion_decoder()
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default=MODELS[0])
     parser.add_argument('--text', type=str, default='modern upbeat eletronic lofi beats')
