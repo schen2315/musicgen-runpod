@@ -5,24 +5,25 @@ import os
 ACCESS_KEY_ID = os.environ['aws_access_key_id']
 SECRET_ACCESS_KEY_ID = os.environ['aws_secret_access_key']
 
-def upload_file(filename, bucket, object_name):
+def upload_file(filename, bucket, region, object_name):
     if object_name is None:
         object_name = os.path.basename(filename)
 
     s3_client = boto3.client('s3',
                              aws_access_key_id=ACCESS_KEY_ID,
                              aws_secret_access_key=SECRET_ACCESS_KEY_ID,
-                             region_name=REGION)
+                             region_name=region)
     try:
         resp = s3_client.upload_file(filename, bucket, object_name)
     except ClientError as e:
         print(e)
 
 # upload files
-def upload_files(files=[], bucket):
+def upload_files(files=[], bucket, region):
     try:
         for file in files:
-            upload_file(file, bucket, f"audio/{file}")
+            upload_file(file, bucket, region, f"audio/{file}")
+            print(f"uploaded to s3://{bucket}/audio/{file}")
     except ClientError as e:
         print(e)
 

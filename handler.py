@@ -1,5 +1,4 @@
-from melody import load_diffusion_decoder
-from melody import make_music
+from melody import load_diffusion_decoder, make_music
 from upload_to_s3 import upload_files
 
 import runpod
@@ -13,7 +12,11 @@ def handler(job):
     job_input = job["input"] # Access the input from the request.
   
     # Add your custom code here.
+    audio_files = make_music(job_input["prompt"])
+    # save to s3
+    upload_files(audio_files, BUCKET, REGION)
     return job_input["prompt"] + " converted to output."
 
 if __name__ == "__main__":
+    load_diffusion_decoder()
     runpod.serverless.start({ "handler": handler}) # Required.
