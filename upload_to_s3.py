@@ -22,8 +22,9 @@ def upload_file(filename, bucket, region, object_name):
 def upload_files(files, bucket, region):
     try:
         for file in files:
-            upload_file(file, bucket, region, f"audio/{file}")
-            print(f"uploaded to s3://{bucket}/audio/{file}")
+            filename = os.path.basename(file)
+            upload_file(file, bucket, region, f"audio/{filename}")
+            print(f"uploaded to s3://{bucket}/audio/{filename}")
     except ClientError as e:
         print(e)
 
