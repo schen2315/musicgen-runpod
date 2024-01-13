@@ -1,3 +1,6 @@
 {
-	"input": "my test input"
+	"input": {
+		"name" : "my-test-name",
+		"prompt" : "inspirational instrumental"
+	}
 }

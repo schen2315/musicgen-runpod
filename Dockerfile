@@ -29,5 +29,7 @@ ADD handler.py .
 ADD melody.py .
 ADD upload_to_s3.py .
 
+RUN mkdir /workdir/outputs
+
 # CMD ["python", "-u", "test_handler.py"]
 CMD ["/bin/sh", "-c", "sleep", "infinity"]

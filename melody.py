@@ -46,10 +46,11 @@ def make_music(model=MODELS[0],
         outputs = outputs.detach().cpu().float()
         for out in outputs:
             i = 1
-            with open(f"./{name}-{i}.wav", "wb") as f:
-                audio_write(f"./{name}-{i}.wav", out, sample_rate, strategy="loudness",
+            out_name = f"{name}-{i}.wav" 
+            with open(out_name, "wb") as f:
+                audio_write(out_name, out, sample_rate, strategy="loudness",
                         loudness_headroom_db=16, loudness_compressor=True, add_suffix=False)
-                audio_files.append(f"{name}-{i}.wav")
+                audio_files.append(out_name)
             i += 1
     return audio_files
 
