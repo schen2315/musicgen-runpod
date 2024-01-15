@@ -1,1 +1,1 @@
-{"input":{"name" : "my-test-name","prompt" : "inspirational instrumental"}}
+{"input":{"name" : "my-test-name","prompt" : "inspirational instrumental"}, "s3Config": {"accessId": "DUMMY", "accessSecret": "DUMMY", "bucketName": "riff8-audio", "region": "us-east-1"}}

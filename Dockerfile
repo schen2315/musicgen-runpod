@@ -23,13 +23,12 @@ RUN apt-get -y install git
 RUN git clone https://github.com/schen2315/musicgen-api
 
 
-# ADD ./test_handler.py .
-# ADD ./test_input.json .
 ADD handler.py .
 ADD melody.py .
 ADD upload_to_s3.py .
 
 RUN mkdir /workdir/outputs
+RUN apt-get -y install vim
 
-# CMD ["python", "-u", "test_handler.py"]
+# CMD ["python3.10", "-u", "test_handler.py"]
 CMD ["/bin/sh", "-c", "sleep", "infinity"]
