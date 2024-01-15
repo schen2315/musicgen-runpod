@@ -2,16 +2,21 @@ import boto3
 from botocore.exceptions import ClientError
 import os
 
-ACCESS_KEY_ID = os.environ['ACCESS_KEY_ID']
-SECRET_ACCESS_KEY_ID = os.environ['SECRET_ACCESS_KEY_ID']
+ACCESS_KEY_ID = os.environ.get('ACCESS_KEY_ID', None)
+SECRET_ACCESS_KEY_ID = os.environ.get('SECRET_ACCESS_KEY_ID', None)
 
-def upload_file(filename, bucket, region, object_name):
+def upload_file(filename,
+                bucket,
+                region,
+                object_name,
+                aws_access_key_id=ACCESS_KEY_ID,
+                aws_secret_access_key=SECRET_ACCESS_KEY_ID):
     if object_name is None:
         object_name = os.path.basename(filename)
 
     s3_client = boto3.client('s3',
-                             aws_access_key_id=ACCESS_KEY_ID,
-                             aws_secret_access_key=SECRET_ACCESS_KEY_ID,
+                             aws_access_key_id=aws_access_key_id,
+                             aws_secret_access_key=aws_secret_access_key,
                              region_name=region)
     try:
         resp = s3_client.upload_file(filename, bucket, object_name)
@@ -19,11 +24,15 @@ def upload_file(filename, bucket, region, object_name):
         print(e)
 
 # upload files
-def upload_files(files, bucket, region):
+def upload_files(files,
+                 bucket,
+                 region,
+                 aws_access_key_id=ACCESS_KEY_ID,
+                 aws_secret_access_key=SECRET_ACCESS_KEY_ID):
     try:
         for file in files:
             filename = os.path.basename(file)
-            upload_file(file, bucket, region, f"audio/{filename}")
+            upload_file(file, bucket, region, f"audio/{filename}", aws_access_key_id, aws_secret_access_key)
             print(f"uploaded to s3://{bucket}/audio/{filename}")
     except ClientError as e:
         print(e)
