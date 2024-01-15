@@ -4,10 +4,12 @@ import os
 
 ACCESS_KEY_ID = os.environ.get('ACCESS_KEY_ID', None)
 SECRET_ACCESS_KEY_ID = os.environ.get('SECRET_ACCESS_KEY_ID', None)
-
+REGION = 'us-east-1'
+# todo : get rid of upload_file
+# only use upload_files
 def upload_file(filename,
                 bucket,
-                region,
+                region=REGION,
                 object_name,
                 aws_access_key_id=ACCESS_KEY_ID,
                 aws_secret_access_key=SECRET_ACCESS_KEY_ID):
@@ -26,7 +28,7 @@ def upload_file(filename,
 # upload files
 def upload_files(files,
                  bucket,
-                 region,
+                 region=REGION,
                  aws_access_key_id=ACCESS_KEY_ID,
                  aws_secret_access_key=SECRET_ACCESS_KEY_ID):
     try:
