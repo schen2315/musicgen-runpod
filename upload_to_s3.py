@@ -9,8 +9,8 @@ REGION = 'us-east-1'
 # only use upload_files
 def upload_file(filename,
                 bucket,
-                region=REGION,
                 object_name,
+                region=REGION,
                 aws_access_key_id=ACCESS_KEY_ID,
                 aws_secret_access_key=SECRET_ACCESS_KEY_ID):
     if object_name is None:
@@ -34,7 +34,7 @@ def upload_files(files,
     try:
         for file in files:
             filename = os.path.basename(file)
-            upload_file(file, bucket, region, f"audio/{filename}", aws_access_key_id, aws_secret_access_key)
+            upload_file(file, bucket, f"audio/{filename}", region, aws_access_key_id, aws_secret_access_key)
             print(f"uploaded to s3://{bucket}/audio/{filename}")
     except ClientError as e:
         print(e)
